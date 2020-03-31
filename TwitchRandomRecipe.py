@@ -49,7 +49,7 @@ class TwitchDinner:
         self.cooldown = cooldown
 
     def message_handler(self, m):
-        #try:
+        try:
             if m.type == "366":
                 logging.info(f"Successfully joined channel: #{m.channel}")
             
@@ -68,8 +68,8 @@ class TwitchDinner:
                         logging.info(out)
                         self.ws.send_whisper(m.user, out)
 
-        #except Exception as e:
-        #    logging.exception(e)
+        except Exception as e:
+            logging.exception(e)
     
     def read_corpus(self):
         # Path to the corpus directory
@@ -90,7 +90,7 @@ class TwitchDinner:
         match = self.re_tag.search(form)
         while match:
             # Replace the tag with a corresponding corpus element
-            form = form.replace(match.group(), random.choice(self.corpus[match.group(1)]))
+            form = form.replace(match.group(), random.choice(self.corpus[match.group(1)]), 1)
             # And look for a new tag
             match = self.re_tag.search(form)
         
