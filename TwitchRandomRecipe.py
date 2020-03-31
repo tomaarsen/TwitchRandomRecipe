@@ -6,7 +6,7 @@ Log(__file__)
 
 from Settings import Settings
 
-class TwitchDinner:
+class TwitchRandomRecipe:
     def __init__(self):
         self.host = None
         self.port = None
@@ -14,6 +14,8 @@ class TwitchDinner:
         self.nick = None
         self.auth = None
 
+        # Regular expression for detecting a tag
+        self.re_tag = re.compile(r"(?:{(.*?)})")
         # Get default, empty corpus using all .txt files in the corpus directory
         # Each file is expected to have the format "{tag}.txt" where "{tag}" is what
         # will be used in the formats. Eg "ingredient.txt" has "ingredient" as tag.
@@ -21,11 +23,8 @@ class TwitchDinner:
         self.corpus = {}
         # Fill the corpus
         self.read_corpus()
-        
         # Used for cooldowns
         self.previous_time = 0
-        # Regular expression for detecting a tag
-        self.re_tag = re.compile(r"(?:{(.*?)})")
 
         # Fill previously initialised variables with data from the settings.txt file
         Settings(self)
@@ -77,10 +76,22 @@ class TwitchDinner:
         # Fill the corpus such that each .txt file, eg "ingredients.txt"
         # has "ingredients" as key, and a list of nonempty strings from 
         # "ingredients.txt" as value for that key
-        for filename in os.listdir(corpus_dir):
-            if filename.endswith(".txt"):
-                with open(os.path.join(corpus_dir, filename)) as f:
-                    self.corpus[filename.replace(".txt", "")] = [x for x in f.read().split("\n") if x]
+        try:
+            for filename in os.listdir(corpus_dir):
+                if filename.endswith(".txt"):
+                    with open(os.path.join(corpus_dir, filename)) as f:
+                        self.corpus[filename.replace(".txt", "")] = [x for x in f.read().split("\n") if x]
+        except FileNotFoundError:
+            raise FileNotFoundError("This program relies on a \"formats.txt\" file within the \"corpus\" directory. See https://github.com/CubieDev/TwitchRandomRecipe for a default.")
+
+        # Check whether the formats contain unknown tags, or the illegal tag {formats}
+        if "formats" in self.corpus:
+            for form in self.corpus["formats"]:
+                tags = set(self.re_tag.findall(form)) - (self.corpus.keys() - set("formats"))
+                if tags:
+                    raise Exception(f"Unknown or illegal tag{'s' if len(tags) > 1 else ''} used: {', '.join('{' + tag + '}' for tag in tags)} in \"{form}\".")
+        else:
+            raise FileNotFoundError("This program relies on a \"formats.txt\" file within the \"corpus\" directory. See https://github.com/CubieDev/TwitchRandomRecipe for a default.")
 
     def generate(self):
         # Randomly pick a format
@@ -97,4 +108,4 @@ class TwitchDinner:
         return form
 
 if __name__ == "__main__":
-    TwitchDinner()
+    TwitchRandomRecipe()

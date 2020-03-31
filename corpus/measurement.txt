@@ -11,3 +11,11 @@ jars
 cans
 lbs
 oz
+fluid ounces
+teacups
+glasses
+shot glasses
+kg
+kilograms
+grams
+calories
