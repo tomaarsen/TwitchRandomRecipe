@@ -1,5 +1,5 @@
 from TwitchWebsocket import TwitchWebsocket
-import json, requests, random, logging, time
+import json, requests, random, logging, time, os, re
 
 from Log import Log
 Log(__file__)
@@ -14,27 +14,18 @@ class TwitchDinner:
         self.nick = None
         self.auth = None
 
-        self.formats = [
-            "Try some {} with {}, topped with {} and {}.", 
-            "How about {}, together with {}, and seasoned with some {}.",
-            "Mix some {} with {}, served ontop of {}.",
-            "Boil {} together with {}, with some fried {}.",
-            "Fry some {} with {} at high temperatures, served as a base for {}.",
-            "Deep-fry {} as a side for {}.",
-            "Blend {} with {} to make a delicious smoothie.",
-            "The {} with {} is just to die for!",
-            "{} and {}, the secret to a succesful {}.",
-            "Dice some {}, fry it in a pan together with {}, garnish with some {} and serve.",
-            "Take this {}, throw it in a pot, add some {}, a {}. Baby, you got a stew going.",
-            "You should know, {} with {} is heaven on Earth.",
-            "Whatever you do, never, EVER mix {} with {}",
-
-            "Were you really going to just eat some raw {}? Come on beb, have some respect.",
-        ]
-        self.previous_time = 0
+        # Get default, empty corpus using all .txt files in the corpus directory
+        # Each file is expected to have the format "{tag}.txt" where "{tag}" is what
+        # will be used in the formats. Eg "ingredient.txt" has "ingredient" as tag.
+        # And hence a random ingredient replaces a "... {ingredient} ..." in formats.txt
+        self.corpus = {}
+        # Fill the corpus
+        self.read_corpus()
         
-        with open("ingredients.txt") as f:
-            self.ingredients = f.read().split("\n")
+        # Used for cooldowns
+        self.previous_time = 0
+        # Regular expression for detecting a tag
+        self.re_tag = re.compile(r"(?:{(.*?)})")
 
         # Fill previously initialised variables with data from the settings.txt file
         Settings(self)
@@ -58,23 +49,17 @@ class TwitchDinner:
         self.cooldown = cooldown
 
     def message_handler(self, m):
-        try:
+        #try:
             if m.type == "366":
                 logging.info(f"Successfully joined channel: #{m.channel}")
             
             elif m.type == "PRIVMSG":
                 if m.message.startswith("!recipe"):
                     if time.time() > self.previous_time + self.cooldown:
-                        # Randomly pick a format
-                        form = random.choice(self.formats)
-                        # Get the amount of ingredients in the format
-                        n = form.count("{}")
-                        # Fetch ingredients from the list by https://github.com/schollz/ingredients
-                        ingredients = random.choices(self.ingredients, k=n)
-                        # Apply ingredients to format
-                        output = form.format(*ingredients)
-                        logging.info(output)
-                        self.ws.send_message(output)
+                        # Generate a recipe
+                        out = self.generate()
+                        logging.info(out)
+                        self.ws.send_message(out)
                         # Update the previous time for cooldown
                         self.previous_time = time.time()
                     
@@ -83,8 +68,33 @@ class TwitchDinner:
                         logging.info(out)
                         self.ws.send_whisper(m.user, out)
 
-        except Exception as e:
-            logging.exception(e)
+        #except Exception as e:
+        #    logging.exception(e)
     
+    def read_corpus(self):
+        # Path to the corpus directory
+        corpus_dir = os.path.join(os.getcwd(), "corpus")
+        # Fill the corpus such that each .txt file, eg "ingredients.txt"
+        # has "ingredients" as key, and a list of nonempty strings from 
+        # "ingredients.txt" as value for that key
+        for filename in os.listdir(corpus_dir):
+            if filename.endswith(".txt"):
+                with open(os.path.join(corpus_dir, filename)) as f:
+                    self.corpus[filename.replace(".txt", "")] = [x for x in f.read().split("\n") if x]
+
+    def generate(self):
+        # Randomly pick a format
+        form = random.choice(self.corpus["formats"])
+        
+        # Look for a tag
+        match = self.re_tag.search(form)
+        while match:
+            # Replace the tag with a corresponding corpus element
+            form = form.replace(match.group(), random.choice(self.corpus[match.group(1)]))
+            # And look for a new tag
+            match = self.re_tag.search(form)
+        
+        return form
+
 if __name__ == "__main__":
     TwitchDinner()

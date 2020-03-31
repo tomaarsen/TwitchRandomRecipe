@@ -1,0 +1,15 @@
+Try {amount} {measurement} of {ingredient} with {amount} {measurement} of {vegetable}, topped with {herb} and {herb}.
+How about {amount} {measurement} of {ingredient}, together with {amount} {measurement} of {ingredient}, and seasoned with some {herb}.
+Mix some {vegetable} with {amount} {measurement} of {ingredient}, served ontop of {ingredient}.
+Boil {amount} {measurement} of {ingredient} together with {amount} {measurement} of {vegetable}, with some fried {vegetable}.
+Fry {amount} {measurement} of {ingredient} with {amount} {measurement} of {vegetable} at high temperatures, served as a base for {herb}.
+Deep-fry {amount} {measurement} of {ingredient} as a side for {amount} {measurement} of {vegetable}.
+Blend {amount} {measurement} of {vegetable} with {amount} {measurement} of {ingredient} to make a delicious smoothie.
+The {ingredient} with {vegetable} is just to die for!
+{herb} and {amount} {measurement} of {vegetable}, the secret to a succesful {ingredient}.
+Dice some {vegetable}, fry it in a pan together with {amount} {measurement} of {ingredient}, garnish with some {herb} and serve.
+Take {amount} {measurement} of {ingredient}, throw it in a pot, add some {herb}, a {vegetable}. Baby, you got a stew going.
+You should know, {ingredient} with {herb} is heaven on Earth.
+Whatever you do, never, EVER mix {ingredient} with {vegetable}.
+
+Were you really going to just eat {amount} {measurement} raw {ingredient}? Come on beb, have some respect.

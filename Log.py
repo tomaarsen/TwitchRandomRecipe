@@ -25,7 +25,7 @@ class Log():
     @staticmethod
     def get_channel():
         try:
-            with open(Settings.PATH, "r") as f:
+            with open(os.path.join(os.getcwd(), "settings.json"), "r") as f:
                 settings = f.read()
                 data = json.loads(settings)
                 return data["Channel"].replace("#", "").lower()
