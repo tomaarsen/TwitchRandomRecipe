@@ -86,6 +86,9 @@ class TwitchRandomRecipe:
 
         # Check whether the formats contain unknown tags, or the illegal tag {formats}
         if "formats" in self.corpus:
+            if not self.corpus["formats"]:
+                raise Exception("Please fill \"formats.txt\" with some formats. See https://github.com/CubieDev/TwitchRandomRecipe for more information.")
+
             for form in self.corpus["formats"]:
                 tags = set(self.re_tag.findall(form)) - (self.corpus.keys() - set("formats"))
                 if tags:

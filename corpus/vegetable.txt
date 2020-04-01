@@ -118,7 +118,6 @@ shallot
 satsuma
 avocado
 tat soi
-squash 
 skirret
 oregano
 spinach
@@ -135,6 +134,7 @@ chayote
 coconut
 lettuce
 cabbage
+squash
 jambul
 turnip
 durian
