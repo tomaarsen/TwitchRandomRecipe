@@ -51,7 +51,7 @@ or even sport predictions:<br>
 ---
 ### Cooldown
 
-To prevent spam, a cooldown between `!recipe` uses is implemented. To further reduce spam, whenever a user hits such a cooldown, they are whispered the time until the cooldown expires, rather than being told so in chat. 
+To prevent spam, a cooldown between `!recipe` uses is implemented. To further reduce spam, whenever a user hits such a cooldown, they are whispered the time until the cooldown expires, rather than being told so in chat. Users can whisper the bot `!nopm` to disable these cooldown whispers, and `!yespm` to (re)enable the cooldown private messages.
 
 The length of this cooldown in seconds can be modified in the `settings.json` file. For more information, see the [Settings](#settings) section below.
 
