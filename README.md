@@ -40,8 +40,9 @@ blood orange
 blueberry
 ...
 </pre>
+The majority of the existing files within `corpus.txt` are from [schollz](https://github.com/schollz)'s [ingredients](https://github.com/schollz/ingredients/tree/master/corpus) repository. I thank him for providing an open sourced list of ingredients, vegetables, fruits and more.
 
-Because of the flexibility of this, it is even possible to make formats with tags and corresponding text files that are completely unrelated to recipes. You could make formats about games:<br>
+Because of the flexibility of this system, it is even possible to make formats with tags and corresponding text files that are completely unrelated to recipes. You could make formats about games:<br>
 <pre>Did you see that {streamer} beat {proplayer} in {game} last night?</pre>
 or art inspiration:<br>
 <pre>You should {artform} a {jobtitle} riding a {creature}.</pre>
