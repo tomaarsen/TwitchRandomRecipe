@@ -5,6 +5,7 @@ from Log import Log
 Log(__file__)
 
 from Settings import Settings
+from Database import Database
 
 class TwitchRandomRecipe:
     def __init__(self):
@@ -26,6 +27,9 @@ class TwitchRandomRecipe:
         # Used for cooldowns
         self.previous_time = 0
 
+        # Database for storing who should not be whispered cooldowns
+        self.db = Database()
+
         # Fill previously initialised variables with data from the settings.txt file
         Settings(self)
 
@@ -35,7 +39,7 @@ class TwitchRandomRecipe:
                                   nick=self.nick,
                                   auth=self.auth,
                                   callback=self.message_handler,
-                                  capability=[],
+                                  capability=["commands"],
                                   live=True)
         self.ws.start_bot()
         
@@ -63,9 +67,22 @@ class TwitchRandomRecipe:
                         self.previous_time = time.time()
                     
                     else:
-                        out = f"Cooldown hit: {self.cooldown - (time.time() - self.previous_time):.2f} out of {self.cooldown}s remaining. You can't stop these whispers yet because I don't code THAT fast, jeez."
+                        out = f"Cooldown hit: {self.cooldown - (time.time() - self.previous_time):.2f} out of {self.cooldown}s remaining. !nopm to stop these cooldown pm's."
                         logging.info(out)
-                        self.ws.send_whisper(m.user, out)
+                        if not self.db.check_whisper_ignore(m.user):
+                            self.ws.send_whisper(m.user, out)
+            
+            elif m.type == "WHISPER":
+                # Allow people to whisper the bot to disable or enable whispers.
+                if m.message == "!nopm":
+                    logging.debug(f"Adding {m.user} to Do Not Whisper.")
+                    self.db.add_whisper_ignore(m.user)
+                    self.ws.send_whisper(m.user, "You will no longer be sent whispers. Type !yespm to reenable.")
+
+                elif m.message == "!yespm":
+                    logging.debug(f"Removing {m.user} from Do Not Whisper.")
+                    self.db.remove_whisper_ignore(m.user)
+                    self.ws.send_whisper(m.user, "You will again be sent whispers. Type !nopm to disable again.")
 
         except Exception as e:
             logging.exception(e)
