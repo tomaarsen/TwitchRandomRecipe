@@ -1,5 +1,6 @@
 from TwitchWebsocket import TwitchWebsocket
 import json, requests, random, logging, time, os, re
+from typing import Optional
 
 from Log import Log
 Log(__file__)
@@ -43,15 +44,15 @@ class TwitchRandomRecipe:
                                   live=True)
         self.ws.start_bot()
         
-    def set_settings(self, host, port, chan, nick, auth, cooldown):
+    def set_settings(self, host: str, port: int, chan: str, nick: str, auth: str, cooldown: Union[int, float]):
         self.host = host
-        self.port = port
+        self.port = int(port)
         self.chan = chan
         self.nick = nick
         self.auth = auth
-        self.cooldown = cooldown
+        self.cooldown = float(cooldown)
 
-    def message_handler(self, m):
+    def message_handler(self, m: "TwitchWebsocket.Message"):
         try:
             if m.type == "366":
                 logging.info(f"Successfully joined channel: #{m.channel}")
@@ -87,7 +88,7 @@ class TwitchRandomRecipe:
         except Exception as e:
             logging.exception(e)
     
-    def read_corpus(self):
+    def read_corpus(self) -> None:
         # Path to the corpus directory
         corpus_dir = os.path.join(os.getcwd(), "corpus")
         # Fill the corpus such that each .txt file, eg "ingredients.txt"
@@ -101,19 +102,21 @@ class TwitchRandomRecipe:
         except FileNotFoundError:
             raise FileNotFoundError("This program relies on a \"formats.txt\" file within the \"corpus\" directory. See https://github.com/CubieDev/TwitchRandomRecipe for a default.")
 
-        # Check whether the formats contain unknown tags, or the illegal tag {formats}
+        # Check whether the formats file exists
         if "formats" in self.corpus:
+            # Check whether the formats file is not empty
             if not self.corpus["formats"]:
                 raise Exception("Please fill \"formats.txt\" with some formats. See https://github.com/CubieDev/TwitchRandomRecipe for more information.")
 
+            # Check whether the formats contain unknown tags, or the illegal tag {formats}
             for form in self.corpus["formats"]:
-                tags = set(self.re_tag.findall(form)) - (self.corpus.keys() - set("formats"))
-                if tags:
-                    raise Exception(f"Unknown or illegal tag{'s' if len(tags) > 1 else ''} used: {', '.join('{' + tag + '}' for tag in tags)} in \"{form}\".")
+                unknown_tags = set(self.re_tag.findall(form)) - (self.corpus.keys() - set("formats"))
+                if unknown_tags:
+                    raise Exception(f"Unknown or illegal tag{'s' if len(unknown_tags) > 1 else ''} used: {', '.join('{' + tag + '}' for tag in unknown_tags)} in \"{form}\".")
         else:
             raise FileNotFoundError("This program relies on a \"formats.txt\" file within the \"corpus\" directory. See https://github.com/CubieDev/TwitchRandomRecipe for a default.")
 
-    def generate(self):
+    def generate(self, message: str) -> str:
         # Randomly pick a format
         form = random.choice(self.corpus["formats"])
         
