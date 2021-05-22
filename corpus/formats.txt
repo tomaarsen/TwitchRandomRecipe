@@ -1,3 +1,4 @@
+# Initial formats
 Try {amount} {measurement} of {ingredient} with {amount} {measurement} of {vegetable}, topped with {herb} and {herb}.
 How about {amount} {measurement} of {ingredient}, together with {amount} {measurement} of {ingredient}, and seasoned with some {herb}.
 Mix some {vegetable} with {amount} {measurement} of {ingredient}, served ontop of {ingredient}.
@@ -12,4 +13,44 @@ Take {amount} {measurement} of {ingredient}, throw it in a pot, add some {herb},
 You should know, {ingredient} with {herb} is heaven on Earth.
 Whatever you do, never, EVER mix {ingredient} with {vegetable}.
 
+# New formats
+I would definitely recommend trying out {vegetable} with {ingredient}!
+You're missing out if you've never tried {ingredient} and {vegetable} topped with {amount} {measurement} of {herb}.
+Shoutout to those eating {vegetable} with {herb} every morning. Get fit!
+Lose 20 pounds by eating {amount} {measurement} of {herb} with every meal!
+Lose 10 pounds by adding {amount} {measurement} of {ingredient} to every meal!
+Make sure to get a big pan if you're mixing {ingredient} with {vegetable}.
+Pepperoni is lame, a {ingredient} with {ingredient} pizza is where it's at.
+A spoonful of {ingredient} does wonders for the metabolism.
+You've got to try the new superfood: just mix some {herb} with {ingredient}.
+
+# Formats that include the {meal} tag
+A {meal} with {amount} {measurement} of {ingredient} is all I need to get up in the morning.
+{herb} and {amount} {measurement} of {ingredient}, the secret to a succesful {meal}.
+The best way to make a {meal} is by adding roughly {amount} {measurement} of {ingredient}.
+No {meal} is complete without a sprinkle of {herb} and {amount} [measurement} of {vegetable}.
+Looking for an easy dinner idea? Make a great {meal} with {ingredient}.
+The only way to make a {meal} is to add ungodly amounts of {ingredient}.
+Go all out on the weekends: make a {meal} with {amount} {measurement} of {vegetable} and {ingredient}.
+For breakfast you can never go wrong with a good {meal}.
+My favourite dinner is a {meal}. Be lazy, order it.
+Boost your energy by consuming a healthy {meal} with {amount} {measurement} of {herb}.
+Breakfast on the go? Just take a {meal} with {ingredient}.
+Lunch on the go? Just take a {meal} with {amount} {measurement} of {ingredient} and {herb}.
+A {amount} {measurement} {meal} is always a great start of the day!
+Take {amount} {measurement} of {ingredient}, throw it together, add some {herb}, a {vegetable}. And that's your {meal} all done.
+Try {amount} {measurement} of {ingredient} with {amount} {measurement} of {vegetable} to make a wonderful {meal}.
+Mix some {vegetable} with {amount} {measurement} of {ingredient}, served as a {meal}.
+Boil {amount} {measurement} of {ingredient} together with {amount} {measurement} of {vegetable} to make a nice {meal}.
+Fry {amount} {measurement} of {ingredient} with {amount} {measurement} of {vegetable} at high temperatures to make a {meal}.
+Deep-fry {amount} {measurement} of {ingredient} to add to your {meal}.
+Blend {amount} {measurement} of {vegetable} with {amount} {measurement} of {ingredient} to make a delicious {meal}.
+Go fetch yourself a {ingredient} {meal}. You heard me. Try it.
+Have you ever had a {ingredient} {meal}? You're missing out if you haven't.
+Most underrated meal: {ingredient} {meal} with {herb}.
+I'm here to introduce and sell you on the {ingredient} {meal}. Agree, or be wrong.
+
+# Sarcastic/joking formats
 Were you really going to just eat {amount} {measurement} raw {ingredient}? Come on beb, have some respect.
+You wanted a recipe? Too bad. Just go order a {meal}.
+You wanted an actual recipe? That is unfortunate, unless you consider a {ingredient} {meal} a good meal.

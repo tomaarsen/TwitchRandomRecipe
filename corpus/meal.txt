@@ -1,0 +1,48 @@
+pizza
+pasta
+risotto
+stew
+cocktail
+stir fry
+curry
+soup
+salad
+tea
+lasagna
+brisket
+barbeque
+breakfast
+lunch
+brunch
+dinner
+snack
+ratatouille
+taco
+burrito
+wrap
+English breakfast
+fajita
+cupcake
+pie
+smoothie
+jumble
+hodgepodge
+hodgepodge
+mishmash
+mishmash
+charcuterie
+sandwich
+poutine
+burger
+quiche
+omelette
+frittata
+shepherd's pie
+dumpling
+momo
+cookie
+meatloaf
+calzone
+tray bake
+brownie
+cake

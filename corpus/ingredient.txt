@@ -396,7 +396,6 @@ manchego cheese
 mzarella cheese
 shishito pepper
 premium tequila
-pressure cooker
 littleneck clam
 polska kielbasa
 chocolate wafer
@@ -2238,7 +2237,6 @@ baby caper
 asafoetida
 clam broth
 good honey
-st germain
 sage thyme
 red pepper
 frangelico

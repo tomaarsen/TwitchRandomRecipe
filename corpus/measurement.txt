@@ -1,11 +1,9 @@
 tablespoons
-envelopes
 teaspoons
 bottles
 pounds
 pieces
 ounces
-ears
 cups
 jars
 cans
@@ -19,3 +17,12 @@ kg
 kilograms
 grams
 calories
+pints
+quarts
+gallons
+dessertspoons
+drops
+smidgens
+pinches
+dashes
+scoops

@@ -1,6 +1,6 @@
 from TwitchWebsocket import TwitchWebsocket
 import json, requests, random, logging, time, os, re
-from typing import Optional
+from typing import Optional, Union
 
 from Log import Log
 Log(__file__)
@@ -98,7 +98,7 @@ class TwitchRandomRecipe:
             for filename in os.listdir(corpus_dir):
                 if filename.endswith(".txt"):
                     with open(os.path.join(corpus_dir, filename)) as f:
-                        self.corpus[filename.replace(".txt", "")] = [x for x in f.read().split("\n") if x]
+                        self.corpus[filename.replace(".txt", "")] = [x for x in f.read().split("\n") if x and not x.startswith(("#", "//"))]
         except FileNotFoundError:
             raise FileNotFoundError("This program relies on a \"formats.txt\" file within the \"corpus\" directory. See https://github.com/CubieDev/TwitchRandomRecipe for a default.")
 
@@ -116,7 +116,7 @@ class TwitchRandomRecipe:
         else:
             raise FileNotFoundError("This program relies on a \"formats.txt\" file within the \"corpus\" directory. See https://github.com/CubieDev/TwitchRandomRecipe for a default.")
 
-    def generate(self, message: str) -> str:
+    def generate(self) -> str:
         # Randomly pick a format
         form = random.choice(self.corpus["formats"])
         
