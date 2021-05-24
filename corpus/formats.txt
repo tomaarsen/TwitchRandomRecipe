@@ -54,3 +54,27 @@ I'm here to introduce and sell you on the {ingredient} {meal}. Agree, or be wron
 Were you really going to just eat {amount} {measurement} raw {ingredient}? Come on beb, have some respect.
 You wanted a recipe? Too bad. Just go order a {meal}.
 You wanted an actual recipe? That is unfortunate, unless you consider a {ingredient} {meal} a good meal.
+
+# Versus formats (ingredient)
+Chat, settle a debate for me: What is better, a {ingredient} or {ingredient} {meal}?
+Chat, what is better, a {ingredient} or {ingredient} {meal}?
+What is better, a {ingredient} or {ingredient} {meal}?
+If you had to eat a {ingredient} or {ingredient} {meal}, which would you eat? How come?
+Food fight! A {ingredient} or {ingredient} {meal}?
+Would you rather have a {ingredient} or {ingredient} {meal}?
+
+# Versus formats (vegetable)
+Chat, settle a debate for me: What is better, a {vegetable} or {vegetable} {meal}?
+Chat, what is better, a {vegetable} or {vegetable} {meal}?
+What is better, a {vegetable} or {vegetable} {meal}?
+If you had to eat a {vegetable} or {vegetable} {meal}, which would you eat? How come?
+Food fight! A {vegetable} or {vegetable} {meal}?
+Would you rather have a {vegetable} or {vegetable} {meal}?
+
+# Versus formats (separate meals)
+Chat, settle a debate for me: What is better, a {ingredient} {meal} or a {ingredient} {meal}?
+Chat, what is better, a {ingredient} {meal} or a {ingredient} {meal}?
+What is better, a {ingredient} {meal} or a {ingredient} {meal}?
+If you had to eat a {ingredient} {meal} or a {ingredient} {meal}, which would you eat? How come?
+Food fight! A {ingredient} {meal} or a {ingredient} {meal}?
+Would you rather have a {ingredient} {meal} or a {ingredient} {meal}?
