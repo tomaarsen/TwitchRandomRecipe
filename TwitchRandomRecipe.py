@@ -1,6 +1,6 @@
 from TwitchWebsocket import TwitchWebsocket
-import json, requests, random, logging, time, os, re
-from typing import Optional, Union
+import random, logging, time, os, re
+from typing import Union
 
 from Log import Log
 Log(__file__)
