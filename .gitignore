@@ -127,3 +127,4 @@ dmypy.json
 # Custom
 settings_backup.json
 DoNotWhisper.db
+.vscode
