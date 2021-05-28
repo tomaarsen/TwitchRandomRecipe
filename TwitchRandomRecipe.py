@@ -1,12 +1,14 @@
+from Log import Log
+Log(__file__)
+
 from TwitchWebsocket import TwitchWebsocket
 import random, logging, time, os, re
 from typing import Union
 
-from Log import Log
-Log(__file__)
-
 from Settings import Settings
 from Database import Database
+
+logger = logging.getLogger(__name__)
 
 class TwitchRandomRecipe:
     def __init__(self):
@@ -55,38 +57,38 @@ class TwitchRandomRecipe:
     def message_handler(self, m: "TwitchWebsocket.Message"):
         try:
             if m.type == "366":
-                logging.info(f"Successfully joined channel: #{m.channel}")
+                logger.info(f"Successfully joined channel: #{m.channel}")
             
-            elif m.type == "PRIVMSG":
+            if m.type == "PRIVMSG":
                 if m.message.startswith("!recipe"):
                     if time.time() > self.previous_time + self.cooldown:
                         # Generate a recipe
                         out = self.generate()
-                        logging.info(out)
+                        logger.info(out)
                         self.ws.send_message(out)
                         # Update the previous time for cooldown
                         self.previous_time = time.time()
                     
                     else:
                         out = f"Cooldown hit: {self.cooldown - (time.time() - self.previous_time):.2f} out of {self.cooldown}s remaining. !nopm to stop these cooldown pm's."
-                        logging.info(out)
+                        logger.info(out)
                         if not self.db.check_whisper_ignore(m.user):
                             self.ws.send_whisper(m.user, out)
             
             elif m.type == "WHISPER":
                 # Allow people to whisper the bot to disable or enable whispers.
                 if m.message == "!nopm":
-                    logging.debug(f"Adding {m.user} to Do Not Whisper.")
+                    logger.debug(f"Adding {m.user} to Do Not Whisper.")
                     self.db.add_whisper_ignore(m.user)
                     self.ws.send_whisper(m.user, "You will no longer be sent whispers. Type !yespm to reenable.")
 
                 elif m.message == "!yespm":
-                    logging.debug(f"Removing {m.user} from Do Not Whisper.")
+                    logger.debug(f"Removing {m.user} from Do Not Whisper.")
                     self.db.remove_whisper_ignore(m.user)
                     self.ws.send_whisper(m.user, "You will again be sent whispers. Type !nopm to disable again.")
 
         except Exception as e:
-            logging.exception(e)
+            logger.exception(e)
     
     def read_corpus(self) -> None:
         # Path to the corpus directory
