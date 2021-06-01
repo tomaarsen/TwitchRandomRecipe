@@ -28,7 +28,7 @@ You've got to try the new superfood: just mix some {herb} with {ingredient}.
 A {meal} with {amount} {measurement} of {ingredient} is all I need to get up in the morning.
 {herb} and {amount} {measurement} of {ingredient}, the secret to a succesful {meal}.
 The best way to make a {meal} is by adding roughly {amount} {measurement} of {ingredient}.
-No {meal} is complete without a sprinkle of {herb} and {amount} [measurement} of {vegetable}.
+No {meal} is complete without a sprinkle of {herb} and {amount} {measurement} of {vegetable}.
 Looking for an easy dinner idea? Make a great {meal} with {ingredient}.
 The only way to make a {meal} is to add ungodly amounts of {ingredient}.
 Go all out on the weekends: make a {meal} with {amount} {measurement} of {vegetable} and {ingredient}.
@@ -37,7 +37,7 @@ My favourite dinner is a {meal}. Be lazy, order it.
 Boost your energy by consuming a healthy {meal} with {amount} {measurement} of {herb}.
 Breakfast on the go? Just take a {meal} with {ingredient}.
 Lunch on the go? Just take a {meal} with {amount} {measurement} of {ingredient} and {herb}.
-A {amount} {measurement} {meal} is always a great start of the day!
+A {amount} {measurement} {ingredient} {meal} is always a great start of the day!
 Take {amount} {measurement} of {ingredient}, throw it together, add some {herb}, a {vegetable}. And that's your {meal} all done.
 Try {amount} {measurement} of {ingredient} with {amount} {measurement} of {vegetable} to make a wonderful {meal}.
 Mix some {vegetable} with {amount} {measurement} of {ingredient}, served as a {meal}.
